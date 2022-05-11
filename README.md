@@ -16,6 +16,10 @@ webhook_url = "" # The webhook for discord
 
 Other configurables include:
 
-- `sleep_time`: The frequency CTFd is queried.
-- `first_blood_announce_string` : The string that is used for the discord announcement
+- [x] `sleep_time`: The frequency CTFd is queried.
+- [ ] Custom blood messages
+
+### To-Do
+
+- [ ] Random select from a number of messages
 
