@@ -38,5 +38,5 @@ jobs:
       run: |
         export CTFD_HOST=https://cueh-comsec.ctfd.io/
         export CTFD_API_KEY=${ secrets.CTFD_API_KEY }
-        export DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
+        export DISCORD_WEBHOOK_URL=${ secrets.DISCORD_WEBHOOK_URL}
         cd src && pytest
