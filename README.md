@@ -22,4 +22,4 @@ Other configurables include:
 ### To-Do
 
 - [ ] Random select from a number of messages
-
+- [ ] Turn itself into background/daemon process
