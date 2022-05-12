@@ -4,7 +4,7 @@ Author: sharkmoos
 
 ## Use
 
-There are three key fields in `./src/config.py`
+There are three key fields in `./src/config.py`. Currently there are configured to get information from environment variables, but this can be changed
 
 ```py
 api_token = "" # The API token for CTFd
