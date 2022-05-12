@@ -36,7 +36,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        sed 's/# host = ""/host ="https://cueh-comsec.ctfd.io/ /' ./src/config.py
-        sed 's/# api_token = ""/api_token = "${CTFD_API_TOKEN}" ' ./src/config.py
-        sed 's/# webhook_url = ""/webhook_url ="${DISCORD_WEBHOOK_URL}" ' ./src/config.py
+        export CTFD_HOST=https://cueh-comsec.ctfd.io/
+        export CTFD_API_KEY=${ secrets.CTFD_API_KEY }
+        export DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
         cd src && pytest
