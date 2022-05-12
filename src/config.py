@@ -1,4 +1,6 @@
-host = ""  
-api_token = ""
-sleep_time = 30 # seconds 
-webhook_url = ""
+from os import environ
+
+host = environ["CTFD_HOST"]
+api_token = environ["CTFD_API_KEY"]
+sleep_time = 30 # seconds
+webhook_url = environ["DISCORD_WEBHOOK_URL"]
