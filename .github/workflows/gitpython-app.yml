@@ -37,7 +37,7 @@ jobs:
     - name: Test with pytest
       env: 
         CTFD_HOST: "https://cueh-comsec.ctfd.io/"
-        CTFD_API_KEY: ${{ secrets.CTFD_API_KEY }}
+        CTFD_API_KEY: ${{ secrets.CTFD_API_TOKEN }}
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       run: 
         cd src && pytest
