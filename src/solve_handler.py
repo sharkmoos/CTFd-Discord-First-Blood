@@ -1,34 +1,32 @@
-import requests
-from api_handler import API_Session 
-import json
+from api_handler import ApiSession
 import logging
-import config
 
 logging.basicConfig()
 logging.getLogger().setLevel(logging.INFO)
 log = logging.getLogger()
 
-class Solve_Handler:
+
+class SolveHandler:
+
     # host: str
-    
     def __init__(self):
         """
         - Establish the API session
         - Create a dictionary of solved challenges.
         """
-        self.api = API_Session()
-        self.solved_challenges = self.api.get_solved_challenges()
-        log.debug(f"{len(self.solved_challenges)} challenges have been sovled")
+        self.api: ApiSession = ApiSession()
+        self.solved_challenges: dict = self.api.get_solved_challenges()
+        log.debug(f"{len(self.solved_challenges)} challenges have been solved")
 
-    def identify_first_bloods(self) -> list:
+    def identify_first_bloods(self) -> dict or None:
         """
         - Query the CTFd challenge endpoint and compare the results 
         with the base dictionary
         - If new challenges have been solved, identify the solver(s) and
         return a list of them
         """
-        solved_challenges = self.api.get_solved_challenges()
-        new_solvers = {}
+        solved_challenges: dict = self.api.get_solved_challenges()
+        new_solvers: dict = {}
 
         while len(solved_challenges) > len(self.solved_challenges):
             # find which challenges are new
@@ -44,14 +42,14 @@ class Solve_Handler:
                     else:
                         log.warning(f"Something went wrong querying a solver. Error: {solver}")
                         return None
-                else:   pass
+                else:
+                    pass
         return new_solvers
 
     def generate_blood_message(self, user: str, challenge: dict) -> str:
         """
-        Generate the message to be sent to Discord 
+        Generate the message to be sent to Discord
         """
-        message =  f"🩸 Congrats to {user} for first blood on {challenge['name']} in the {challenge['category']} category"
+        message: str = f"🩸 Congrats to {user} for first blood on {challenge['name']} in the {challenge['category']} category "
         log.debug(message)
         return message
-

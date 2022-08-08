@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import logging
 from time import sleep
-from solve_handler import Solve_Handler
+from solve_handler import SolveHandler
 import config
 
 
@@ -13,19 +13,18 @@ def main():
     Loop. Ad infinitum 
     """
     logging.basicConfig()
-    log = logging.getLogger().setLevel(logging.INFO)
+    # logging.getLogger().setLevel(logging.INFO)
     log = logging.getLogger()
-    solve_handler = Solve_Handler()
+    solve_handler = SolveHandler()
 
     while True:
-        #solve_handler.solved_challenges.pop(228)
-        new_solves = solve_handler.identify_first_bloods()
+        new_solves: dict = solve_handler.identify_first_bloods()
         for solve in new_solves:
-
             solve_message = solve_handler.generate_blood_message(solve, new_solves[solve])
             log.debug(solve_message)
             solve_handler.api.send_to_discord(solve_message)
             sleep(config.sleep_time)
+
 
 if __name__ == "__main__":
     main()
